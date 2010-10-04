@@ -15,11 +15,15 @@ configure do
 end
 
 not_found do
-  FILE_500
+  personalize FILE_500
 end
 
 error do
-  FILE_500
+  personalize FILE_500
+end
+
+def personalize txt
+  FILE_500.gsub("'IP_ADDRESS'", "'#{request.ip}'")
 end
 
 # Permanent redirect.

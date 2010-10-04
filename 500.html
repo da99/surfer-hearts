@@ -24,5 +24,9 @@
 		<h1>Website Error</h1>
 		<p>Page Not Found :(</p>
 	</div>
+	<script type="text/javascript"> var mp_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://'); document.write(unescape('%3Cscript src="' + mp_protocol + 'api.mixpanel.com/site_media/js/api/mixpanel.js" type="text/javascript"%3E%3C/script%3E')); </script> <script type='text/javascript'> try {  var mpmetrics = new MixpanelLib('a57868e972ee4a8642107b182f0c917b'); } catch(err) { null_fn = function () {}; var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn }; } </script>
+	<script type="text/javascript">
+		mpmetrics.track('errors', { 'url': window.location.href, 'ua': window.navigator.userAgent, 'ip_address' : 'IP_ADDRESS'  }); 
+	</script>
 </body>
 </html>
