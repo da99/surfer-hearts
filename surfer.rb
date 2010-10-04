@@ -98,6 +98,9 @@ end
     if splat.empty?
       splat = "index.html"
     end
+    if splat =~ /\/\Z/
+      splat = splat.sub(/\/\Z/, '.html')
+    end
     
     get_file File.join( "/#{url}/", splat )
   end
