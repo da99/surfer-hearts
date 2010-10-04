@@ -15,7 +15,11 @@ end
 
 def get_file file_path
   r_key = "file_" + file_path.gsub(/[^a-z0-9A-Z]{1,}/, '_')
-  return REDIS.get(file_path) if REDIS
+  
+  if REDIS
+    cache = REDIS.get(file_path) 
+    return cache if cache
+  end
   
   url = File.join( S3_PREFIX, file_path)
   contents = open(url) { |file| file.read } 
