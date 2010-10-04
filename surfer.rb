@@ -45,6 +45,7 @@ def get_file file_path
   end
   
   url = File.join( S3_PREFIX, file_path)
+  
   contents = open(url) { |file| file.read } 
   
   REDIS.set( r_key, contents) if REDIS
@@ -58,7 +59,7 @@ get '/' do
   get_file 'index.html'
 end
 
-%w{ index about blog  }.each { |file|
+%w{ index about blog search }.each { |file|
   get "/#{file}.html" do
     redirect "/#{file}/", 301
   end
@@ -91,10 +92,10 @@ end
     
     splat = params[:splat].to_s.strip
     if splat.empty?
-      splat = "/#{url}/index.html"
+      splat = "index.html"
     end
     
-    get_file splat
+    get_file File.join( "/#{url}/", splat )
   end
 }
 
@@ -103,7 +104,7 @@ get "/images/blank.gif" do
 end
 
 get "/archives/" do
-  redirect "http://www.surferhearts.com/", 307
+  redirect "/", 307
 end
 
 get "/rss/" do
