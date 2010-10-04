@@ -1,24 +1,4 @@
-IndexIgnore .htaccess */.??* *~ *# */HEADER* */README* */_vti*
 
-<FilesMatch "(\.log|ss_cms)$">
-  Order deny,allow
-  Deny from all
-</FilesMatch>
-
-<Limit GET POST>
-order deny,allow
-deny from all
-allow from all
-</Limit>
-<Limit PUT DELETE>
-order deny,allow
-deny from all
-</Limit>
-
-Options +FollowSymlinks
-
-
-php_flag display_errors Off
 ErrorDocument 403 /500.html
 ErrorDocument 404 /500.html
 ErrorDocument 500 /500.html

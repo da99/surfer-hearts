@@ -11,6 +11,21 @@ configure do
           else
             false
           end
+  FILE_500 = File.read("500.html") { |file| file.read }
+end
+
+not_found do
+  FILE_500
+end
+
+error do
+  FILE_500
+end
+
+# Permanent redirect.
+def redirect_301 *pieces 
+  url = File.join( S3_PREFIX, *pieces )
+  redirect url, 301 
 end
 
 def get_file file_path
@@ -46,10 +61,13 @@ end
   end
 }
 
+get "/favicon.ico" do
+  redirect_301 "favicon.ico"
+end
+
 %w{ media javascripts }.each { |prefix|
   get "/#{prefix}/*"  do
-    url      = File.join( S3_PREFIX, prefix, params[:splat] )
-    redirect url, 301
+    redirect_301 prefix, params[:splat] 
   end
 }
 
