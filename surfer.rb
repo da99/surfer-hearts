@@ -114,7 +114,7 @@ end
   get "/#{filename}.xml" do
     cache_it 15
     content_type 'application/xml', :charset => 'utf-8'
-    File.open("/#{filename}.xml") { |file| file.read }
+    File.open("#{filename}.xml") { |file| file.read }
   end
 }
 
