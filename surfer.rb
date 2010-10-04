@@ -15,15 +15,15 @@ configure do
 end
 
 not_found do
-  personalize FILE_500
+  personalize 
 end
 
 error do
-  personalize FILE_500
+  personalize
 end
 
-def personalize txt
-  FILE_500.gsub("'IP_ADDRESS'", "'#{request.ip}'")
+def personalize txt = nil
+  (txt || FILE_500).gsub("'IP_ADDRESS'", "'#{request.ip}'")
 end
 
 # Permanent redirect.
@@ -57,6 +57,11 @@ end
 
 get '/' do
   get_file 'index.html'
+end
+
+get "/500.html" do
+  cache_it 1
+  personalize
 end
 
 %w{ index about blog search }.each { |file|
