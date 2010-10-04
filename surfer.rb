@@ -25,6 +25,9 @@ def get_file file_path
   contents = open(url) { |file| file.read } 
   
   REDIS.set( r_key, contents) if REDIS
+  
+  # 1296000 == 15 days
+  response.headers['Cache-Control'] = 'public, max-age=1296000'
 
   contents
 end
