@@ -94,7 +94,7 @@ end
 
   get( "/#{url}/*" ) do
     
-    splat = params[:splat].to_s.strip
+    splat = params[:splat].to_s.strip.gsub('+', '-').gsub( ' ', '-').gsub('%20', '-')
     if splat.empty?
       splat = "index.html"
     end
