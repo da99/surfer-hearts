@@ -88,6 +88,10 @@ end
     redirect "/#{url}/", 301
   end
 
+  get "/#{url}/:id/" do
+    get_file File.join( "/#{url}/", params[:id].to_i.to_s + '.html' )
+  end
+
   get( "/#{url}/*" ) do
     
     splat = params[:splat].to_s.strip
