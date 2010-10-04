@@ -32,6 +32,10 @@ def redirect_301 *pieces
   redirect url, 301 
 end
 
+def cache_it days
+  response.headers['Cache-Control'] = "public, max-age=#{60 * 60 * 12 * days.to_i }"
+end
+
 def get_file file_path
   r_key = "file_" + file_path.gsub(/[^a-z0-9A-Z]{1,}/, '_')
   
@@ -45,8 +49,7 @@ def get_file file_path
   
   REDIS.set( r_key, contents) if REDIS
   
-  # 1296000 == 15 days
-  response.headers['Cache-Control'] = 'public, max-age=1296000'
+  cache_it 15
 
   contents
 end
@@ -55,7 +58,7 @@ get '/' do
   get_file 'index.html'
 end
 
-%w{ search index about blog  }.each { |file|
+%w{ index about blog  }.each { |file|
   get "/#{file}.html" do
     redirect "/#{file}/", 301
   end
@@ -64,6 +67,10 @@ end
     get_file "#{file}.html"
   end
 }
+
+get "/robots.txt" do
+  get_file "robots.txt"
+end
 
 get "/favicon.ico" do
   redirect_301 "favicon.ico"
@@ -75,7 +82,7 @@ end
   end
 }
 
-%w{ blog heart_link heart_links }.each { |url|
+%w{ search blog heart_link heart_links }.each { |url|
   get "/#{url}" do
     redirect "/#{url}/", 301
   end
@@ -90,3 +97,28 @@ end
     get_file splat
   end
 }
+
+get "/images/blank.gif" do
+  redirect "http://www.googlesomewrongpage.com", 301
+end
+
+get "/archives/" do
+  redirect "http://www.surferhearts.com/", 307
+end
+
+get "/rss/" do
+  redirect "/rss.xml", 301
+end
+
+%w{ sitemap rss }.each { |filename| 
+  get "/#{filename}.xml" do
+    cache_it 15
+    content_type 'application/xml', :charset => 'utf-8'
+    File.open("/#{filename}.xml") { |file| file.read }
+  end
+}
+
+get "/media/heart_links/images/*" do
+  redirect File.join("http://surferhearts.s3.amazonaws.com/heart_links/", params[:splat]), 301
+end
+

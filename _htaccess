@@ -1,9 +1,5 @@
 
 ErrorDocument 403 /500.html
-ErrorDocument 404 /500.html
-ErrorDocument 500 /500.html
-
-
 
 RewriteEngine On 
 RewriteBase /
@@ -95,17 +91,4 @@ RewriteRule ^.* http://www.googlesomewrongpage.com [F,L]
 
 
 
-RewriteRule ^images/blank.gif$ http://www.googlesomewrongpage.com [R=301,L]
 
-RewriteRule ^archives/?$ http://www.surferhearts.com/ [R=307,L] 
-
-RewriteRule ^rss/?$ http://www.surferhearts.com/rss.xml [R=301,L] 
-RewriteRule ^media/heart_links/images/(.{5,})$ http://surferhearts.s3.amazonaws.com/heart_links/$1 [R=301,L] 
-
-
-RewriteCond %{REQUEST_URI} /$
-RewriteRule ^(.{2,})/$ http://www.surferhearts.com/$1.html [R=307,L] 
-
-RewriteCond %{REQUEST_URI} !(\.[^./]+)$ 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.{2,})$ http://www.surferhearts.com/$1.html [R=307,L]
