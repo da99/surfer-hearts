@@ -64,6 +64,10 @@ get "/500.html" do
   personalize
 end
 
+get "/googlehostedservice.html" do
+  "googlecdbfb88300e7fc31"
+end
+
 %w{ index about blog search }.each { |file|
   get "/#{file}.html" do
     redirect "/#{file}/", 301
