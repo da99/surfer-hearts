@@ -1,13 +1,16 @@
 
 require 'sinatra'
 require 'open-uri'
+require 'da99_rack_middleware'
+
+use Da99_Rack_Middleware
 
 configure do
   S3_PREFIX = "http://surferhearts.s3.amazonaws.com/public"
   REDIS = if ENV["REDISTOGO_URL"]
             require 'redis'
             uri = URI.parse(ENV["REDISTOGO_URL"])
-            Redis.new(:host => uri.host, :port => uri.port, :password => uri.password) 
+            Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
           else
             false
           end
@@ -15,7 +18,7 @@ configure do
 end
 
 not_found do
-  personalize 
+  personalize
 end
 
 error do
@@ -27,9 +30,9 @@ def personalize txt = nil
 end
 
 # Permanent redirect.
-def redirect_301 *pieces 
+def redirect_301 *pieces
   url = File.join( S3_PREFIX, *pieces )
-  redirect url, 301 
+  redirect url, 301
 end
 
 def cache_it days
@@ -38,18 +41,18 @@ end
 
 def get_file file_path
   r_key = "file_" + file_path.gsub(/[^a-z0-9A-Z]{1,}/, '_')
-  
+
   if REDIS
-    cache = REDIS.get(file_path) 
+    cache = REDIS.get(file_path)
     return cache if cache
   end
-  
+
   url = File.join( S3_PREFIX, file_path)
-  
-  contents = open(url) { |file| file.read } 
-  
+
+  contents = open(url) { |file| file.read }
+
   REDIS.set( r_key, contents) if REDIS
-  
+
   cache_it 15
 
   contents
@@ -72,7 +75,7 @@ end
   get "/#{file}.html" do
     redirect "/#{file}/", 301
   end
-  
+
   get "/#{file}/" do
     get_file "#{file}.html"
   end
@@ -88,7 +91,7 @@ end
 
 %w{ media javascripts }.each { |prefix|
   get "/#{prefix}/*"  do
-    redirect_301 prefix, params[:splat] 
+    redirect_301 prefix, params[:splat]
   end
 }
 
@@ -102,7 +105,7 @@ end
   end
 
   get( "/#{url}/*" ) do
-    
+
     splat = params[:splat].to_s.strip.gsub('+', '-').gsub( ' ', '-').gsub('%20', '-')
     if splat.empty?
       splat = "index.html"
@@ -110,7 +113,7 @@ end
     if splat =~ /\/\Z/
       splat = splat.sub(/\/\Z/, '.html')
     end
-    
+
     get_file File.join( "/#{url}/", splat )
   end
 }
@@ -127,7 +130,7 @@ get "/rss/" do
   redirect "/rss.xml", 301
 end
 
-%w{ sitemap rss }.each { |filename| 
+%w{ sitemap rss }.each { |filename|
   get "/#{filename}.xml" do
     cache_it 15
     content_type 'application/xml', :charset => 'utf-8'

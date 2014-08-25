@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# -*- bash -*-
+#
+#
+set -u -e -o pipefail
+
+git push
+git push heroku master
+curl http://www.miniuni.com/
+echo ''
+
+
+
