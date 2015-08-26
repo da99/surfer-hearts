@@ -1,9 +1,15 @@
 
 require 'sinatra'
 require 'open-uri'
-require 'da99_rack_middleware'
+require 'da99_rack_protect'
 
-use Da99_Rack_Middleware
+use Da99_Rack_Protect do | mid |
+  if (ENV['IS_DEV'])
+    mid.config :host, :localhost
+  else
+    mid.config :host, 'surferhearts.com', 'www.surferhearts.com', 'surferhearts.herokuapp.com'
+  end
+end
 
 configure do
   S3_PREFIX = "http://surferhearts.s3.amazonaws.com/public"
