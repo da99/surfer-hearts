@@ -3,7 +3,7 @@ require 'sinatra'
 require 'open-uri'
 
 configure do
-  S3_PREFIX = "http://surferhearts.s3.amazonaws.com/public"
+  S3_PREFIX = "/public"
   REDIS = if ENV["REDISTOGO_URL"]
             require 'redis'
             uri = URI.parse(ENV["REDISTOGO_URL"])

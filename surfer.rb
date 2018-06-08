@@ -12,7 +12,7 @@ use Da99_Rack_Protect do | mid |
 end
 
 configure do
-  S3_PREFIX = "http://surferhearts.s3.amazonaws.com/public"
+  S3_PREFIX = "http://surferhearts.s3.amazonaws." + "com/public"
   REDIS = if ENV["REDISTOGO_URL"]
             require 'redis'
             uri = URI.parse(ENV["REDISTOGO_URL"])
@@ -145,6 +145,6 @@ end
 }
 
 get "/media/heart_links/images/*" do
-  redirect File.join("http://surferhearts.s3.amazonaws.com/heart_links/", params[:splat]), 301
+  redirect File.join("http://surferhearts.s3.amazonaws.com" + "/heart_links/", params[:splat]), 301
 end
 

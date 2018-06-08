@@ -118,7 +118,7 @@ RewriteRule ^images/blank.gif$ http://www.googlesomewrongpage.com [R=301,L]
 RewriteRule ^archives/?$ http://www.surferhearts.com/ [R=307,L] 
 
 RewriteRule ^rss/?$ http://www.surferhearts.com/rss.xml [R=301,L] 
-RewriteRule ^media/heart_links/images/(.{5,})$ http://surferhearts.s3.amazonaws.com/heart_links/$1 [R=301,L] 
+RewriteRule ^media/heart_links/images/(.{5,})$ http://surferhearts.s3.amazonaws.com /heart_links/$1 [R=301,L] 
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
