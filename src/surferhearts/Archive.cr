@@ -24,14 +24,14 @@ module SurferHearts
       case
       when path == "/surferhearts"
         path = "/index"
+
+      when path == "/surferhearts/rss"
+        return DA_Server.redirect_to(302, "/surferhearts/rss.xml", ctx)
+
       when path.index("/surferhearts") == 0
         path = path.sub("/surferhearts", "")
-      end
 
-      if path == "/rss"
-        path = "/rss.xml"
-        return DA_Server.redirect_to(302, "/rss.xml", ctx)
-      end
+      end # case
 
       if !File.file?(File.join(@dir, path))
         path = "#{path}.html"
