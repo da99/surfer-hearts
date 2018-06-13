@@ -25,6 +25,9 @@ module SurferHearts
       when path == "/surferhearts"
         path = "/index"
 
+      when path == "/surferhearts/index.html"
+        return DA_Server.redirect_to(302, "/surferhearts", ctx)
+
       when path == "/surferhearts/rss"
         return DA_Server.redirect_to(302, "/surferhearts/rss.xml", ctx)
 
