@@ -31,6 +31,12 @@ module SurferHearts
       when path == "/surferhearts/rss"
         return DA_Server.redirect_to(302, "/surferhearts/rss.xml", ctx)
 
+      when path == "/index.html"
+        return DA_Server.redirect_to(302, "/", ctx)
+
+      when File.basename(path) == "index.html"
+        return DA_Server.redirect_to(302, File.dirname(path), ctx)
+
       when path.index("/surferhearts") == 0
         path = path.sub("/surferhearts", "")
 
