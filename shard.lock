@@ -2,19 +2,15 @@ version: 1.0
 shards:
   da:
     github: da99/da
-    version: 1.10.3
+    version: 3.2.1
 
   da_deploy:
     github: da99/da_deploy
-    version: 0.4.0
-
-  da_process:
-    github: da99/da_process.cr
-    version: 1.3.4
+    version: 0.4.1
 
   da_server:
     github: da99/da_server
-    version: 0.2.0
+    version: 1.0.0
 
   da_spec:
     github: da99/da_spec.cr
