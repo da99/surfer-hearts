@@ -45,13 +45,20 @@ module SurferHearts
 
       end # case
 
-      if path == "/"
-        path = "/index"
-      end
-
-      if !File.file?(File.join(@dir, path))
-        path = "#{path}.html"
-      end
+      path = case
+             when path == "/"
+               "/index.html"
+             when File.exists?(File.join(@dir, "#{path}.html"))
+               "#{path}.html"
+             when File.exists?(File.join(@dir, "#{path}/index.html"))
+               "#{path}/index.html"
+             when File.exists?(File.join(@dir, "#{path}/1.html"))
+               "#{path}/1.html"
+             when !File.file?(File.join(@dir, path))
+               "#{path}.html"
+             else
+               path
+             end # case
 
       ctx.request.path = path
       return @public_file_handler.call(ctx)
