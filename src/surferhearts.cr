@@ -18,7 +18,7 @@ module SurferHearts
       user,
       [
         DA_Server::No_Slash_Tail.new,
-        Megauni_Redirect.new,
+        # Megauni_Redirect.new,
         Archive.new,
         DA_Server::Public_Files.new(public_dir),
       ]

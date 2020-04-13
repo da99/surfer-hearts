@@ -42,6 +42,10 @@ module SurferHearts
 
       end # case
 
+      if path == "/"
+        path = "/index"
+      end
+
       if !File.file?(File.join(@dir, path))
         path = "#{path}.html"
       end
