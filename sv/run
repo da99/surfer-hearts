@@ -5,8 +5,10 @@ set -u -e
 exec 2>&1
 
 
-cd ../
+cd /apps/surferhearts
 
-bin="bin/surferhearts"
-echo "=== Starting @ $(date): $bin service run"
-exec chpst "$bin" service run
+_bin="bin/surferhearts"
+_user="nobody"
+_port="81"
+echo "=== Starting @ $(date) in ${PWD}: $_bin service run $_port $_user"
+exec $_bin service run $_port $_user
