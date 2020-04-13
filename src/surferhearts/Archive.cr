@@ -8,13 +8,16 @@ module SurferHearts
     @dir : String
 
     def initialize
-      @dir = if DA.development?
-               File.expand_path(
-                 File.dirname(Process.executable_path.not_nil!) + "/../Public"
-               )
-            else
-              DA_Deploy::App.new("surferhearts").public_dir
-            end
+      # @dir = if DA.development?
+      #          File.expand_path(
+      #            File.dirname(Process.executable_path.not_nil!) + "/../Public"
+      #          )
+      #       else
+      #         DA_Deploy::App.new("surferhearts").public_dir
+      #       end
+      @dir  = File.expand_path(
+        File.dirname(Process.executable_path.not_nil!) + "/../Public"
+      )
       @public_file_handler = DA_Server::Public_Files.new(@dir)
     end # === def initialize
 

@@ -8,7 +8,7 @@ require "./surferhearts/Archive"
 module SurferHearts
   extend self
 
-  def service_run(port : Int32 = 4567, user : String = `whoami`.strip)
+  def service_run(port : Int32, user : String)
     host       = DA.development? ? "localhost" : "0.0.0.0"
     public_dir = "./Public"
 
