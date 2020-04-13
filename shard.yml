@@ -11,3 +11,6 @@ dependencies:
 development_dependencies:
   da_spec:
     github: da99/da_spec.cr
+targets:
+  surferhearts:
+    main: bin/__.cr

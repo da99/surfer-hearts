@@ -5,12 +5,12 @@ module SurferHearts
     include HTTP::Handler
 
     def call(ctx)
-      return call_next(ctx) if DA.is_development?
+      return call_next(ctx) if DA.development?
 
       host = ctx.request.host
       path = ctx.request.path
 
-      if host == "www.megauni.com" && !DA.is_development?
+      if host == "www.megauni.com" && !DA.development?
         return call_next(ctx)
       end
 

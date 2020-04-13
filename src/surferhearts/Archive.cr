@@ -8,7 +8,7 @@ module SurferHearts
     @dir : String
 
     def initialize
-      @dir = if DA.is_development?
+      @dir = if DA.development?
                File.expand_path(
                  File.dirname(Process.executable_path.not_nil!) + "/../Public"
                )

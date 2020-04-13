@@ -9,7 +9,7 @@ module SurferHearts
   extend self
 
   def service_run(port : Int32 = 4567, user : String = `whoami`.strip)
-    host       = DA.is_development? ? "localhost" : "0.0.0.0"
+    host       = DA.development? ? "localhost" : "0.0.0.0"
     public_dir = "./Public"
 
     DA_Server.new(
