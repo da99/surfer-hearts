@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "surferhearts",
+  "version": "0.0.0",
+  "description": "Main package for surferhearts.com",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@cloudflare/wrangler": ">0.0.0"
+  },
+  "devDependencies": {
+    "prettier": ">0.0.0"
+  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://github/da99/surferhearts.git"
+  },
+  "author": "da99",
+  "license": "MIT"
+}

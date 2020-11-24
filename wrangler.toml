@@ -1,0 +1,6 @@
+name = "surferhearts"
+type = "javascript"
+account_id = "9c4dc75e07b3fd04442ceac71a2532be"
+zone_id = "6d361b7639c771d5e7d163f04e0ce445"
+route = "www.surferhearts.com/*"
+workers_dev = true

@@ -3,3 +3,12 @@
 /.shards/
 /.crystal/
 /lib/
+/node_modules/
+/target/
+/dist/
+
+**/*.rs.bk
+Cargo.lock
+/pkg/
+wasm-pack.log
+.cargo-ok
