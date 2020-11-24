@@ -1,16 +1,23 @@
-name = "surferhearts"
+name = "surferhearts-dev"
 account_id = "9c4dc75e07b3fd04442ceac71a2532be"
 type = "webpack"
 workers_dev = false
-zone_id = "6d361b7639c771d5e7d163f04e0ce445"
-route = "www.surferhearts.com/*"
 
 [site]
 bucket = "./Public"
 entry-point = "./"
 
 [dev]
-port = 4568
-local_protocol = "https"
+port = 4567
+local_protocol = "http"
 upstream_protocol = "https"
 
+[env.dev]
+workers_dev = true
+
+
+[env.production]
+workers_dev = false
+name = "surferhearts"
+zone_id = "6d361b7639c771d5e7d163f04e0ce445"
+route = "www.surferhearts.com/*"

@@ -8,6 +8,7 @@
     "lib": "lib"
   },
   "dependencies": {
+    "@cloudflare/kv-asset-handler": ">0.0.0",
     "@cloudflare/wrangler": ">0.0.0"
   },
   "devDependencies": {
