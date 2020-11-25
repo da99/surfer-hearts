@@ -6,10 +6,8 @@
 /node_modules/
 /target/
 /dist/
-
 Cargo.lock
 /pkg/
 wasm-pack.log
 .cargo-ok
-/dist/
 /worker/
