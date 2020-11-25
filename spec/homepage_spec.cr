@@ -1,15 +1,16 @@
 
 require "./spec_helper"
-require "http/client"
 
 describe "Homepage" do
-  it "it renders html" do
-    response = HTTP::Client.get "http://localhost:4567/"
-    assert response.body.to_s == File.read("./Public/index.html")
+  it "renders /index.html" do
+    assert request("/") == public("/index.html")
   end
 
-  it "renders: robots.txt" do
-    response = HTTP::Client.get "http://localhost:4567/robots.txt"
-    assert response.body.to_s == File.read("./Public/robots.txt")
+  it "renders /surferhearts/ as /index.html" do
+    assert request("/surferhearts/") == public("/index.html")
+  end
+
+  it "renders: /robots.txt" do
+    assert request("/robots.txt") == public("/robots.txt")
   end
 end # describe
