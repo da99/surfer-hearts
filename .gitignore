@@ -7,9 +7,9 @@
 /target/
 /dist/
 
-**/*.rs.bk
 Cargo.lock
 /pkg/
 wasm-pack.log
 .cargo-ok
+/dist/
 /worker/
