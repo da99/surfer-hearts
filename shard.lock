@@ -2,21 +2,9 @@ version: 2.0
 shards:
   da:
     git: https://github.com/da99/da.git
-    version: 5.4.1
-
-  da_deploy:
-    git: https://github.com/da99/da_deploy.git
-    version: 0.4.1
-
-  da_server:
-    git: https://github.com/da99/da_server.git
-    version: 1.1.1
+    version: 0.0.0+git.commit.528509d3d4a96875fe16df034982b8af56637882
 
   da_spec:
     git: https://github.com/da99/da_spec.cr.git
-    version: 1.1.2
-
-  inspect_bang:
-    git: https://github.com/da99/inspect_bang.cr.git
-    version: 1.0.2
+    version: 0.0.0+git.commit.0b60af2b60eea7a6a93099acde1c3dfece384ef9
 
